@@ -90,11 +90,11 @@ public class Hangman {
     }
 
     if (wrongCount >= 4) {
-      System.out.println(" |");
+      System.out.println("    |\"\"|");
     }
 
     if (wrongCount >= 5) {
-      System.out.print("/ ");
+      System.out.println("     ('>')");
       if (wrongCount >= 6) {
         System.out.println("\\");
       }
