@@ -14,11 +14,11 @@ public class SnowManClient {
 
     //Scan the word list file
     Scanner scannerSports = new Scanner(new File(
-        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\SportsWords.txt "));
+        "SportsWords.txt "));
     Scanner scannerMovies = new Scanner(new File(
-        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\MoviesWords.txt "));
+        "MoviesWords.txt "));
     Scanner scannerGeography = new Scanner(new File(
-        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\GeographyWords.txt "));
+        "GeographyWords.txt "));
     Scanner keyboard = new Scanner(System.in);
     Menu menu = new Menu();
     String guessWord = " ";
