@@ -10,51 +10,101 @@ import java.util.Scanner;
 public class SnowManClient {
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws FileNotFoundException {
 
-      //Scan the word list file
-      Scanner scanner = new Scanner(new File(
-          "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\wordlist.txt "));
-      Scanner keyboard = new Scanner(System.in);
-      Menu menu = new Menu();
+    //Scan the word list file
+    Scanner scannerSports = new Scanner(new File(
+        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\SportsWords.txt "));
+    Scanner scannerMovies = new Scanner(new File(
+        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\MoviesWords.txt "));
+    Scanner scannerGeography = new Scanner(new File(
+        "C:\\Users\\skhadge\\Desktop\\Java\\Course Materials\\Java-Part2\\Snowman-Project\\GeographyWords.txt "));
+    Scanner keyboard = new Scanner(System.in);
+    Menu menu = new Menu();
+    String guessWord = " ";
 
+    //Store it in the array list
+    List<String> sportsWords = new ArrayList<>();
+    List<String> moviesWords = new ArrayList<>();
+    List<String> geographyWords = new ArrayList<>();
+    List<Character> playerGuessWord = new ArrayList<>();
+    Integer count = 0;
 
-      //Store it in the array list
-      List<String> word = new ArrayList<>();
+    System.out.println(sportsWords);
 
-      while (scanner.hasNext()) {
-        System.out.println(scanner.nextLine());
-        word.add(scanner.next());
+    // User display Main menu category
+    menu.printMenu();
+    String chooseCategory = keyboard.nextLine();
+    if (chooseCategory.equals("1")) {
+      System.out.println(" You have chosen Sports as a category");
+      while (scannerSports.hasNext()) {
+        System.out.println(scannerSports.nextLine());
+        sportsWords.add(scannerSports.next());
+        guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
+        System.out.println(sportsWords);
+
       }
-        System.out.println(word);
 
-      // User display Main menu category
-        menu.printMenu();
-        String chooseCategory = keyboard.nextLine();
-        if (chooseCategory == "1"){
-          System.out.println(" You have chosen Sports as a category");
-        } else{
-          System.out.println(" You have chosen Movies as a category");
-        }
+    }
+    if (chooseCategory.equals("2")) {
+      System.out.println(" You have chosen Movies as a category");
+      while (scannerMovies.hasNext()) {
+        System.out.println(scannerMovies.nextLine());
+        moviesWords.add(scannerMovies.next());
+        guessWord = moviesWords.get(new Random().nextInt(moviesWords.size()));
+        System.out.println(moviesWords);
 
-        String guessWord = word.get(new Random().nextInt(word.size()));
-        System.out.println(guessWord);
+      }
+    }
+    if (chooseCategory.equals("3")) {
+      System.out.println(" You have chosen Geogrpahy as a category");
+      while (scannerGeography.hasNext()) {
+        System.out.println(scannerGeography.nextLine());
+        geographyWords.add(scannerGeography.next());
+        guessWord = geographyWords.get(new Random().nextInt(geographyWords.size()));
+        System.out.println(geographyWords);
 
-        // Show it to the player
-      for(int i = 0; i < guessWord.length(); i++)
-      {
-        System.out.print(" _ ");
+      }
+    }
+    System.out.println(guessWord);
+
+    // Show it to the player
+    Integer wrongCount = 0;
+
+    while (true) {
+
+      if (wrongCount >= 10) {
+        System.out.println("You lose!");
+        System.out.println("The word was: " + guessWord );
+        break;
       }
 
-      while(true) {
-        System.out.println("\n Please enter a letter: ");
-        List<Character> playerGuess = new ArrayList<>();
-
-        String letterGuess = keyboard.nextLine();
-        playerGuess.add(letterGuess.charAt(0));
-        printWordState(guessWord, playerGuess);
+      if (printWordState(guessWord, playerGuessWord)) {
+        System.out.println("You win!");
+        break;
       }
+
+      printWordState(guessWord, playerGuessWord);
+      if (!getPlayerGuess(keyboard, guessWord, playerGuessWord)) {
+        wrongCount++;
+        System.out.println("Sorry try again!");
+        System.out.println(" Guesses left: " + (10 - wrongCount));
+      }
+
+
+    }
   }
+
+
+  private static boolean getPlayerGuess(Scanner keyboard, String word,
+      List<Character> playerGuesses) {
+    System.out.println("Please enter a letter:");
+    String letterGuess = keyboard.nextLine();
+    playerGuesses.add(letterGuess.charAt(0));
+
+    return word.contains(letterGuess);
+  }
+
 
   // Print the state of the word with user's guesses.
   private static boolean printWordState(String word, List<Character> playerGuesses) {
@@ -63,13 +113,16 @@ public class SnowManClient {
       if (playerGuesses.contains(word.charAt(i))) {
         System.out.print(word.charAt(i));
         correctCount++;
-      }
-      else {
-        System.out.print("-");
+      } else {
+        System.out.print(" _ ");
       }
     }
+
     System.out.println();
 
     return (word.length() == correctCount);
   }
 }
+
+  
+

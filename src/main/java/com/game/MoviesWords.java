@@ -1,5 +1,5 @@
 package com.game;
 
-public class MoviesWords {
+public class MoviesWords extends SnowManClient{
 
 }
