@@ -3,14 +3,16 @@ package com.game;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class SnowManClient {
 
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws FileNotFoundException, InvalidCharacterException {
 
     //Scan the word list file
     Scanner scannerSports = new Scanner(new File(
@@ -28,9 +30,9 @@ public class SnowManClient {
     List<String> moviesWords = new ArrayList<>();
     List<String> geographyWords = new ArrayList<>();
     List<Character> playerGuessWord = new ArrayList<>();
+    Set<String> usedCharacterSet = new HashSet<>();
     Integer count = 0;
 
-    System.out.println(sportsWords);
 
     // User display Main menu category
     menu.printMenu();
@@ -66,6 +68,13 @@ public class SnowManClient {
 
       }
     }
+      else if (chooseCategory.equals("4")){
+        System.out.println(" You have exited the game. ");
+
+
+      }
+
+
     System.out.println(guessWord);
 
     // Show it to the player
@@ -84,30 +93,33 @@ public class SnowManClient {
         break;
       }
 
-      printWordState(guessWord, playerGuessWord);
-      if (!getPlayerGuess(keyboard, guessWord, playerGuessWord)) {
+
+        System.out.println(" Guesses left: " + (10 - wrongCount));
+      if (!getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
-        System.out.println(" Guesses left: " + (10 - wrongCount));
-      }
 
+      }
 
     }
   }
 
 
   private static boolean getPlayerGuess(Scanner keyboard, String word,
-      List<Character> playerGuesses) {
+      List<Character> playerGuesses, Set<String> usedCharacterSet) throws InvalidCharacterException {
+    System.out.println("**********************************");
     System.out.println("Please enter a letter:");
     String letterGuess = keyboard.nextLine();
+    usedCharacterSet.add(letterGuess);
+    System.out.println(usedCharacterSet);
     playerGuesses.add(letterGuess.charAt(0));
-
     return word.contains(letterGuess);
   }
 
 
   // Print the state of the word with user's guesses.
-  private static boolean printWordState(String word, List<Character> playerGuesses) {
+  private static boolean printWordState(String word, List<Character> playerGuesses)
+      throws InvalidCharacterException{
     int correctCount = 0;
     for (int i = 0; i < word.length(); i++) {
       if (playerGuesses.contains(word.charAt(i))) {
@@ -117,7 +129,6 @@ public class SnowManClient {
         System.out.print(" _ ");
       }
     }
-
     System.out.println();
 
     return (word.length() == correctCount);
