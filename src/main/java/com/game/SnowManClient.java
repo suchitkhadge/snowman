@@ -41,7 +41,7 @@ public class SnowManClient {
           System.out.print(word.charAt(i));
           correctCount++;
         } else {
-          System.out.print(" _ ");
+          System.out.print("- ");
         }
       }
       System.out.println();
