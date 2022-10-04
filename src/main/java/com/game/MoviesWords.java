@@ -17,7 +17,7 @@ public class MoviesWords extends WordList{
 
   public String MoviesWords() throws FileNotFoundException {
     Scanner scannerMovies = new Scanner(new File(
-        "MoviesWords.txt "));
+        "movies_words.txt "));
     List<String> moviesWords = new ArrayList<>();
     while (scannerMovies.hasNext()) {
       System.out.println(scannerMovies.nextLine());
