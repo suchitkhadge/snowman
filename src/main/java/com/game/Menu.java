@@ -1,5 +1,7 @@
 package com.game;
 
+import java.util.Random;
+
 public class Menu {
 
      void printMenu()
@@ -9,6 +11,10 @@ public class Menu {
     System.out.println("2. MOVIES");
     System.out.println("3. GEOGRAPHY");
     System.out.println("4. Exit");
+  }
+
+  private String getGameStatus(){
+  return null;
   }
 
 }
