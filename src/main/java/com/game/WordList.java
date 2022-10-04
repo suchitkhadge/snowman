@@ -22,7 +22,7 @@ public abstract class WordList {
     Scanner scannerGeography = new Scanner(new File(
         "GeographyWords.txt"));
     Scanner keyboard = new Scanner(System.in);
-    //Menu menu = new Menu();
+
 
     String guessWord = " ";
 
@@ -34,8 +34,6 @@ public abstract class WordList {
 
     Integer count = 0;
 
-    // User display Main menu category
-    //menu.printMenu();
     String chooseCategory = keyboard.nextLine();
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
@@ -84,7 +82,7 @@ public abstract class WordList {
     while (true) {
 
       //printSnowman method
-      SnowManClient.printSnowman(wrongCount);
+      SnowmanPicture.printSnowman(wrongCount);
 
       if (wrongCount >= 10) {
         System.out.println("You lose!");
