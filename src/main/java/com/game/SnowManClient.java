@@ -16,11 +16,11 @@ public class SnowManClient {
 
     //Scan the word list file
     Scanner scannerSports = new Scanner(new File(
-        "SportsWords.txt"));
+        "src/main/text-files/sports_words.txt"));
     Scanner scannerMovies = new Scanner(new File(
-        "MoviesWords.txt"));
+        "src/main/text-files/movies_words.txt"));
     Scanner scannerGeography = new Scanner(new File(
-        "GeographyWords.txt"));
+        "src/main/text-files/geography_words.txt"));
     Scanner keyboard = new Scanner(System.in);
     Menu menu = new Menu();
     String guessWord = " ";
@@ -40,32 +40,23 @@ public class SnowManClient {
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
       while (scannerSports.hasNext()) {
-        System.out.println(scannerSports.nextLine());
         sportsWords.add(scannerSports.next());
         guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
-        System.out.println(sportsWords);
-
       }
 
     }
     if (chooseCategory.equals("2")) {
       System.out.println(" You have chosen Movies as a category");
       while (scannerMovies.hasNext()) {
-        System.out.println(scannerMovies.nextLine());
         moviesWords.add(scannerMovies.next());
         guessWord = moviesWords.get(new Random().nextInt(moviesWords.size()));
-        System.out.println(moviesWords);
-
       }
     }
     if (chooseCategory.equals("3")) {
-      System.out.println(" You have chosen Geogrpahy as a category");
+      System.out.println(" You have chosen Geography as a category");
       while (scannerGeography.hasNext()) {
-        System.out.println(scannerGeography.nextLine());
         geographyWords.add(scannerGeography.next());
         guessWord = geographyWords.get(new Random().nextInt(geographyWords.size()));
-        System.out.println(geographyWords);
-
       }
     }
       else if (chooseCategory.equals("4")){
@@ -242,7 +233,7 @@ public class SnowManClient {
         System.out.print(word.charAt(i));
         correctCount++;
       } else {
-        System.out.print(" _ ");
+        System.out.print("- ");
       }
     }
     System.out.println();

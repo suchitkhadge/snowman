@@ -13,7 +13,7 @@ public class SportsWords extends WordList{
 
   public String SportsWords() throws FileNotFoundException {
     Scanner scannerSports = new Scanner(new File(
-        "SportsWords.txt "));
+        "sports_words.txt "));
     List<String> sportsWords = new ArrayList<>();
     while (scannerSports.hasNext()) {
       System.out.println(scannerSports.nextLine());
