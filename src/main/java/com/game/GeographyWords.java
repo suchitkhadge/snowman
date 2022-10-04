@@ -19,7 +19,7 @@ public class GeographyWords extends WordList {
 
   public String GeographyWords() throws FileNotFoundException {
     Scanner scannerGeography = new Scanner(new File(
-        "sports_words.txt "));
+        "src/main/text-files/geography_words.txt"));
     List<String> geographyWords = new ArrayList<>();
 
 
