@@ -33,11 +33,7 @@ public abstract class WordList {
     Set<String> usedCharacterSet = new HashSet<>();
 
     String chooseCategory = keyboard.nextLine();
-    while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
-    {
-      System.out.println("Choose a cateogory again, please. ");
-      chooseCategory = keyboard.nextLine();
-    }
+
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
       generateWord(scannerSports, genericWords);
@@ -49,7 +45,7 @@ public abstract class WordList {
     else if (chooseCategory.equals("3")) {
       System.out.println(" You have chosen Geography as a category");
       generateWord(scannerGeography, genericWords);
-    } else if (chooseCategory.equals("4")) {
+    } else if (chooseCategory.equals(EXIT)) {
       System.out.println(" You have exited the game. ");
 
 
@@ -74,14 +70,14 @@ public abstract class WordList {
         break;
       }
 
-      if (Player.printWordState(guessWord, playerGuessWord)) {
+      if (State.printWordState(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
 
       System.out.println("**********************************");
       System.out.println("Guesses left: " + (10 - wrongCount));
-      if (!Player.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
+      if (!Guesses.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
         System.out.println("**********************************");
