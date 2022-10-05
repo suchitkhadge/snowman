@@ -12,24 +12,32 @@ import java.util.Set;
 
 public abstract class WordList {
 
+
+  public static final String SPORTS_ROOT_DIRECTORY = "src/main/text-files/sports_words.txt";
+  public static final String MOVIES_ROOT_DIRECTORY = "src/main/text-files/movies_words.txt";
+  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/text-files/geography_words.txt";
+  public static final String EXIT = "4";
   public static String guessWord = " ";
 
-  public static void words() throws FileNotFoundException, InvalidCharacterException {
+  public static void words() throws FileNotFoundException {
     Scanner scannerSports = new Scanner(new File(
-        "src/main/text-files/sports_words.txt"));
+        SPORTS_ROOT_DIRECTORY));
     Scanner scannerMovies = new Scanner(new File(
-        "src/main/text-files/movies_words.txt"));
+        MOVIES_ROOT_DIRECTORY));
     Scanner scannerGeography = new Scanner(new File(
-        "src/main/text-files/geography_words.txt"));
+        GEOGRAPHY_ROOT_DIRECTORY));
     Scanner keyboard = new Scanner(System.in);
 
     List<String> genericWords = new ArrayList<>();
     List<Character> playerGuessWord = new ArrayList<>();
     Set<String> usedCharacterSet = new HashSet<>();
 
-    Integer count = 0;
-
     String chooseCategory = keyboard.nextLine();
+    while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
+    {
+      System.out.println("Choose a cateogory again, please. ");
+      chooseCategory = keyboard.nextLine();
+    }
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
       generateWord(scannerSports, genericWords);
@@ -46,16 +54,16 @@ public abstract class WordList {
 
 
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(" Invalid number. Please enter again: ");
       //System.out.println("out of bounds");
     }
 
     System.out.println(guessWord);
 
     // Show it to the player
-    Integer wrongCount = 0;
+    int wrongCount = 0;
 
-    while (!chooseCategory.equals("4")) {
+    while (!chooseCategory.equals(EXIT)) {
 
       //printSnowman method
       SnowmanPicture.printSnowman(wrongCount);
@@ -71,7 +79,8 @@ public abstract class WordList {
         break;
       }
 
-      System.out.println(" Guesses left: " + (10 - wrongCount));
+      System.out.println("**********************************");
+      System.out.println("Guesses left: " + (10 - wrongCount));
       if (!Player.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
@@ -85,50 +94,5 @@ public abstract class WordList {
       sportsWords.add(scannerSports.next());
       guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
     }
-  }
-
-  static boolean getPlayerGuess(Scanner keyboard, String word,
-      List<Character> playerGuesses, Set<String> usedCharacterSet) throws
-      InvalidCharacterException {
-    System.out.println("**********************************");
-    System.out.println("Please enter a letter:");
-    String letterGuess = keyboard.nextLine();
-    if (usedCharacterSet.contains(letterGuess)){
-      System.out.println("Letter already used. Please enter a letter again: ");
-      letterGuess = keyboard.nextLine();
-    }
-    usedCharacterSet.add(letterGuess);
-    System.out.println(usedCharacterSet);
-    playerGuesses.add(letterGuess.charAt(0));
-    return word.contains(letterGuess);
-  }
-
-  // Print the state of the word with user's guesses.
-  static boolean printWordState(String word, List<Character> playerGuesses)
-      throws InvalidCharacterException {
-    int correctCount = 0;
-    for (int i = 0; i < word.length(); i++) {
-      if (playerGuesses.contains(word.charAt(i))) {
-        System.out.print(word.charAt(i));
-        correctCount++;
-      } else {
-        System.out.print("- ");
-      }
-    }
-    System.out.println();
-
-    return (word.length() == correctCount);
-  }
-  public static String generateWord(String category, Scanner scan, List<String> wordScanText){
-    String guessWord = "";
-    while (scan.hasNext()) {
-      System.out.println(scan.nextLine());
-      wordScanText.add(scan.next());
-      guessWord = wordScanText.get(new Random().nextInt(wordScanText.size()));
-      System.out.println(wordScanText);
-    }
-    System.out.println(guessWord);
-    return guessWord;
-
   }
 }
