@@ -51,7 +51,7 @@ public abstract class WordList {
       }
     }
     else if (chooseCategory.equals("3")) {
-      System.out.println(" You have chosen Geogrpahy as a category");
+      System.out.println(" You have chosen Geography as a category");
       while (scannerGeography.hasNext()) {
         geographyWords.add(scannerGeography.next());
         guessWord = geographyWords.get(new Random().nextInt(geographyWords.size()));
@@ -61,8 +61,8 @@ public abstract class WordList {
 
 
     } else {
-      throw new IllegalArgumentException();
-      //System.out.println("out of bounds");
+      //throw new IllegalArgumentException();
+      System.out.println("Invalid number. Please choose between 1-4");
     }
 
     System.out.println(guessWord);
@@ -81,13 +81,13 @@ public abstract class WordList {
         break;
       }
 
-      if (SnowManClient.printWordState(guessWord, playerGuessWord)) {
+      if (State.printWordState(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
 
       System.out.println(" Guesses left: " + (10 - wrongCount));
-      if (!SnowManClient.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
+      if (!Guesses.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
 
