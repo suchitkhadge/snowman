@@ -1,20 +1,37 @@
 package com.game;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
-public class Menu {
+public abstract class Menu {
 
-     void printMenu()
-  {
-    System.out.println(" Choose a category: ");
-    System.out.println("1. SPORTS");
-    System.out.println("2. MOVIES");
-    System.out.println("3. GEOGRAPHY");
-    System.out.println("4. Exit");
+
+
+     public static void printMenu() throws IOException {
+       BufferedReader scannerSports = new BufferedReader(new FileReader(
+           "src/main/text-files/snowman-menu.txt"));
+       String line = scannerSports.readLine();
+       while (scannerSports.readLine()!=null) {
+         System.out.println(line);
+         line = scannerSports.readLine();
+       }
+       scannerSports.close();
+
+      System.out.println(" Choose a category: ");
+      System.out.println("1. SPORTS");
+      System.out.println("2. MOVIES");
+      System.out.println("3. GEOGRAPHY");
+      System.out.println("4. Exit");
+
+
+
   }
 
-  private String getGameStatus(){
-  return null;
-  }
+
 
 }
