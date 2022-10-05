@@ -70,14 +70,14 @@ public abstract class WordList {
         break;
       }
 
-      if (Player.printWordState(guessWord, playerGuessWord)) {
+      if (State.printWordState(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
 
       System.out.println("**********************************");
       System.out.println("Guesses left: " + (10 - wrongCount));
-      if (!Player.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
+      if (!Guesses.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
         System.out.println("**********************************");
