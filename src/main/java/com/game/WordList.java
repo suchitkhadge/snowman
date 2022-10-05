@@ -13,64 +13,53 @@ import java.util.Set;
 public abstract class WordList {
 
 
+  public static final String SPORTS_ROOT_DIRECTORY = "src/main/text-files/sports_words.txt";
+  public static final String MOVIES_ROOT_DIRECTORY = "src/main/text-files/movies_words.txt";
+  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/text-files/geography_words.txt";
+  public static final String EXIT = "4";
+  public static String guessWord = " ";
 
-  public static void words() throws FileNotFoundException, InvalidCharacterException {
+  public static void words() throws FileNotFoundException {
     Scanner scannerSports = new Scanner(new File(
-        "src/main/text-files/sports_words.txt"));
+        SPORTS_ROOT_DIRECTORY));
     Scanner scannerMovies = new Scanner(new File(
-        "src/main/text-files/movies_words.txt"));
+        MOVIES_ROOT_DIRECTORY));
     Scanner scannerGeography = new Scanner(new File(
-        "src/main/text-files/geography_words.txt"));
+        GEOGRAPHY_ROOT_DIRECTORY));
     Scanner keyboard = new Scanner(System.in);
 
-
-    String guessWord = " ";
-
-    List<String> sportsWords = new ArrayList<>();
-    List<String> moviesWords = new ArrayList<>();
-    List<String> geographyWords = new ArrayList<>();
+    List<String> genericWords = new ArrayList<>();
     List<Character> playerGuessWord = new ArrayList<>();
     Set<String> usedCharacterSet = new HashSet<>();
 
-    Integer count = 0;
-
     String chooseCategory = keyboard.nextLine();
+
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
-      while (scannerSports.hasNext()) {
-        sportsWords.add(scannerSports.next());
-        guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
-      }
-
+      generateWord(scannerSports, genericWords);
     }
     else if (chooseCategory.equals("2")) {
       System.out.println(" You have chosen Movies as a category");
-      while (scannerMovies.hasNext()) {
-        moviesWords.add(scannerMovies.next());
-        guessWord = moviesWords.get(new Random().nextInt(moviesWords.size()));
-      }
+      generateWord(scannerMovies, genericWords);
     }
     else if (chooseCategory.equals("3")) {
       System.out.println(" You have chosen Geography as a category");
-      while (scannerGeography.hasNext()) {
-        geographyWords.add(scannerGeography.next());
-        guessWord = geographyWords.get(new Random().nextInt(geographyWords.size()));
-      }
-    } else if (chooseCategory.equals("4")) {
+      generateWord(scannerGeography, genericWords);
+    } else if (chooseCategory.equals(EXIT)) {
       System.out.println(" You have exited the game. ");
 
 
     } else {
-      //throw new IllegalArgumentException();
-      System.out.println("Invalid number. Please choose between 1-4");
+      throw new IllegalArgumentException(" Invalid number. Please enter again: ");
+      //System.out.println("out of bounds");
     }
 
     System.out.println(guessWord);
 
     // Show it to the player
-    Integer wrongCount = 0;
+    int wrongCount = 0;
 
-    while (true) {
+    while (!chooseCategory.equals(EXIT)) {
 
       //printSnowman method
       SnowmanPicture.printSnowman(wrongCount);
@@ -81,19 +70,25 @@ public abstract class WordList {
         break;
       }
 
-      if (State.printWordState(guessWord, playerGuessWord)) {
+      if (Player.printWordState(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
 
-      System.out.println(" Guesses left: " + (10 - wrongCount));
-      if (!Guesses.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
+      System.out.println("**********************************");
+      System.out.println("Guesses left: " + (10 - wrongCount));
+      if (!Player.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
-
+        System.out.println("**********************************");
       }
-
     }
   }
 
+  private static void generateWord(Scanner scannerSports, List<String> sportsWords) {
+    while (scannerSports.hasNext()) {
+      sportsWords.add(scannerSports.next());
+      guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
+    }
+  }
 }

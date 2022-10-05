@@ -1,24 +1,21 @@
 package com.game;
 
 
-import java.io.FileNotFoundException;
+
+import java.io.IOException;
 
 
 public class SnowManClient {
 
 
-  public static void main(String[] args) throws FileNotFoundException, InvalidCharacterException {
-    Menu menu = new Menu();
+  public static void main(String[] args) throws IOException {
 
-    menu.printMenu();
+    Menu.printMenu();
     WordList.words();
-
     SnowmanPicture.printSnowman(0);
 
+    }
   }
-
-
-}
 
   
 
