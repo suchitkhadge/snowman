@@ -1,7 +1,6 @@
 package com.game;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -14,12 +13,11 @@ public class Guesses {
     String letterGuess = keyboard.nextLine().toLowerCase();
     char charGuess = 0;
     charGuess = letterGuess.charAt(0);
-    while ((usedCharacterSet.contains(letterGuess)) || (!Character.isAlphabetic(charGuess))){
-      System.out.println("Invalid letter OR letter already used.  Please enter a letter again: ");
+    while ((usedCharacterSet.contains(letterGuess)) || (!Character.isAlphabetic(charGuess))) {
+      System.out.println("Invalid attempt. Please try again");
       letterGuess = keyboard.nextLine();
       charGuess = letterGuess.charAt(0);
     }
-
 
     usedCharacterSet.add(letterGuess);
     System.out.println(usedCharacterSet);
@@ -28,3 +26,5 @@ public class Guesses {
   }
 
 }
+
+

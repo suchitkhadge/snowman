@@ -1,4 +1,5 @@
 package com.game;
+
 import java.io.IOException;
 
 
@@ -15,13 +16,12 @@ public class SnowManClient {
       WordList.words();
       SnowmanPicture.printSnowman(0);
 
-    } catch (IOException e)
-    {
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
   }
-  }
+}
 
 
 
