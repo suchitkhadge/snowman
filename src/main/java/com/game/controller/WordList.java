@@ -38,7 +38,7 @@ public abstract class WordList {
     // Loop until the user exits out
     while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
     {
-      System.out.println("Please choose a valid category ( 1- 4). ");
+      System.out.println("Please choose a valid category (1- 4). ");
       chooseCategory = keyboard.nextLine();
     }
     // If statement for correct input from user
