@@ -13,9 +13,9 @@ import java.util.Set;
 public abstract class WordList {
 
 
-  public static final String SPORTS_ROOT_DIRECTORY = "src/main/text-files/sports_words.txt";
-  public static final String MOVIES_ROOT_DIRECTORY = "src/main/text-files/movies_words.txt";
-  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/text-files/geography_words.txt";
+  public static final String SPORTS_ROOT_DIRECTORY = "src/main/resources/text-files/sports_words.txt";
+  public static final String MOVIES_ROOT_DIRECTORY = "src/main/resources/text-files/movies_words.txt";
+  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/resources/text-files/geography_words.txt";
   public static final String EXIT = "4";
   public static String guessWord = " ";
 
@@ -35,35 +35,31 @@ public abstract class WordList {
     String chooseCategory = keyboard.nextLine();
 
     // Loop until the user exits out
-    while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
-    {
-      System.out.println("Please choose a valid category ( 1- 4). ");
+    while (!chooseCategory.equals("1") && !chooseCategory.equals("2") && !chooseCategory.equals("3")
+        && !chooseCategory.equals("4")) {
+      System.out.println("Please choose a valid category (1- 4). ");
       chooseCategory = keyboard.nextLine();
     }
     // If statement for correct input from user
-    if (chooseCategory.equals("1")) {
-      System.out.println(" You have chosen Sports as a category");
-      generateWord(scannerSports, genericWords);
+    switch (chooseCategory) {
+      case "1":
+        System.out.println(" You have chosen Sports as a category");
+        generateWord(scannerSports, genericWords);
+        break;
+      case "2":
+        System.out.println(" You have chosen Movies as a category");
+        generateWord(scannerMovies, genericWords);
+        break;
+      case "3":
+        System.out.println(" You have chosen Geography as a category");
+        generateWord(scannerGeography, genericWords);
+        break;
+      default:
+        System.out.println(" You have exited the game. ");
+
+        break;
     }
-    else if (chooseCategory.equals("2")) {
-      System.out.println(" You have chosen Movies as a category");
-      generateWord(scannerMovies, genericWords);
-    }
-    else if (chooseCategory.equals("3")) {
-      System.out.println(" You have chosen Geography as a category");
-      generateWord(scannerGeography, genericWords);
-    } else if (chooseCategory.equals(EXIT)) {
-      System.out.println(" You have exited the game. ");
 
-
-    } else {
-      throw new IllegalArgumentException(" Invalid number. Please enter again: ");
-      //System.out.println("out of bounds");
-    }
-
-    System.out.println(guessWord);
-
-    // Show it to the player
     int wrongCount = 0;
 
     while (!chooseCategory.equals(EXIT)) {
@@ -77,7 +73,7 @@ public abstract class WordList {
         break;
       }
 
-      if (State.printWordState(guessWord, playerGuessWord)) {
+      if (State.checkSolution(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
@@ -90,12 +86,16 @@ public abstract class WordList {
         System.out.println("**********************************");
       }
     }
+
   }
 
   private static void generateWord(Scanner scannerSports, List<String> sportsWords) {
     while (scannerSports.hasNext()) {
       sportsWords.add(scannerSports.next());
-      guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
     }
+    guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
   }
+
 }
+
+

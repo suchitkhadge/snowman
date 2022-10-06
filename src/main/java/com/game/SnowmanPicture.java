@@ -2,7 +2,7 @@ package com.game;
 
 public abstract class SnowmanPicture {
 
-  static void printSnowman(Integer wrongCount){
+  static void printSnowman(Integer wrongCount) {
     if (wrongCount == 0) {
       System.out.println("_________________");
       System.out.println("");
