@@ -1,6 +1,7 @@
 package com.game;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ public class Guesses {
       List<Character> playerGuesses, Set<String> usedCharacterSet) {
     System.out.println("**********************************");
     System.out.println("Please enter a letter:");
-    String letterGuess = keyboard.nextLine();
+    String letterGuess = keyboard.nextLine().toLowerCase();
     if (usedCharacterSet.contains(letterGuess)){
       System.out.println("Letter already used. Please enter a letter again: ");
       letterGuess = keyboard.nextLine();
