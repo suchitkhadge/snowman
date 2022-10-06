@@ -12,9 +12,14 @@ public class Guesses {
     System.out.println("**********************************");
     System.out.println("Please enter a letter:");
     String letterGuess = keyboard.nextLine().toLowerCase();
-    if (usedCharacterSet.contains(letterGuess)){
+    char letterGuesses = 0;
+    while (usedCharacterSet.contains(letterGuess)){
       System.out.println("Letter already used. Please enter a letter again: ");
       letterGuess = keyboard.nextLine();
+    }
+    letterGuesses = letterGuess.charAt(0);
+    if(!Character.isAlphabetic(letterGuesses)) {
+      System.out.println("Invalid attempt. Guess must be alphabetic");
     }
     usedCharacterSet.add(letterGuess);
     System.out.println(usedCharacterSet);
