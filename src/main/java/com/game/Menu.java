@@ -8,32 +8,38 @@ import java.io.IOException;
 public abstract class Menu {
 
 
+  public static final String SNOWMAN_MENU = "src/main/text-files/snowman-menu.txt";
 
-     public static void printMenu() throws IOException {
+  public Menu() {
+  }
 
-       try {
-         BufferedReader scannerSports = new BufferedReader(new FileReader(
-             "src/main/text-files/snowman-menu.txt"));
-         String line = scannerSports.readLine();
-         while (scannerSports.readLine()!=null) {
-           System.out.println(line);
-           line = scannerSports.readLine();
-         }
-         scannerSports.close();
-       } catch (IOException e) {
-         e.printStackTrace();
-       }
+  // Display the first screen when the app is launched
+  public static void printMenu() throws IOException {
+
+      printSnowManMenu();
 
       System.out.println(" Choose a category: ");
       System.out.println("1. SPORTS");
       System.out.println("2. MOVIES");
       System.out.println("3. GEOGRAPHY");
       System.out.println("4. Exit");
-
-
-
   }
 
+  // Displays the snow man in the first screen
+  private static void printSnowManMenu() {
+    try {
+      BufferedReader snowManText = new BufferedReader(new FileReader(
+          SNOWMAN_MENU));
+      String line = snowManText.readLine();
+      while (snowManText.readLine()!=null) {
+        System.out.println(line);
+        line = snowManText.readLine();
+      }
+      snowManText.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 
 }

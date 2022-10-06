@@ -27,6 +27,7 @@ public abstract class WordList {
     Scanner scannerGeography = new Scanner(new File(
         GEOGRAPHY_ROOT_DIRECTORY));
     Scanner keyboard = new Scanner(System.in);
+    Scanner category = null;
 
     List<String> genericWords = new ArrayList<>();
     List<Character> playerGuessWord = new ArrayList<>();
@@ -43,27 +44,28 @@ public abstract class WordList {
     // If statement for correct input from user
     if (chooseCategory.equals("1")) {
       System.out.println(" You have chosen Sports as a category");
-      generateWord(scannerSports, genericWords);
+      category = scannerSports;
     }
     else if (chooseCategory.equals("2")) {
       System.out.println(" You have chosen Movies as a category");
-      generateWord(scannerMovies, genericWords);
+      category = scannerMovies;
     }
     else if (chooseCategory.equals("3")) {
       System.out.println(" You have chosen Geography as a category");
-      generateWord(scannerGeography, genericWords);
+      category = scannerGeography;
     } else if (chooseCategory.equals(EXIT)) {
       System.out.println(" You have exited the game. ");
-
 
     } else {
       throw new IllegalArgumentException(" Invalid number. Please enter again: ");
       //System.out.println("out of bounds");
     }
 
+    copyWordToList(category, genericWords);
+    guessWord = getRandomWord(category, genericWords);
     System.out.println(guessWord);
 
-    // Show it to the player
+
     int wrongCount = 0;
 
     while (!chooseCategory.equals(EXIT)) {
@@ -77,7 +79,7 @@ public abstract class WordList {
         break;
       }
 
-      if (State.printWordState(guessWord, playerGuessWord)) {
+      if (State.checkSolution(guessWord, playerGuessWord)) {
         System.out.println("You win!");
         break;
       }
@@ -92,11 +94,17 @@ public abstract class WordList {
     }
   }
 
-  private static void generateWord(Scanner scannerSports, List<String> sportsWords) {
-    while (scannerSports.hasNext()) {
-      sportsWords.add(scannerSports.next());
-      guessWord = sportsWords.get(new Random().nextInt(sportsWords.size()));
+  // Generate a random word from the category of text files
+  private static void copyWordToList(Scanner category, List<String> genericWords) {
+    while (category.hasNext()) {
+      genericWords.add(category.next());
     }
+    guessWord = genericWords.get(new Random().nextInt(genericWords.size()));
+  }
+
+  private static String getRandomWord(Scanner category, List<String> listWords ){
+    guessWord = listWords.get(new Random().nextInt(listWords.size()));
+    return guessWord;
   }
 
 }

@@ -5,6 +5,9 @@ import java.io.IOException;
 public class SnowManClient {
 
 
+  public SnowManClient() {
+  }
+
   public static void main(String[] args) throws IOException {
 
     try {
@@ -19,6 +22,9 @@ public class SnowManClient {
 
   }
   }
+
+
+
 
   
 
