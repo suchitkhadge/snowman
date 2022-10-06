@@ -10,6 +10,7 @@ public abstract class Menu {
 
 
      public static void printMenu() throws IOException {
+
        try {
          BufferedReader scannerSports = new BufferedReader(new FileReader(
              "src/main/text-files/snowman-menu.txt"));
@@ -19,16 +20,20 @@ public abstract class Menu {
            line = scannerSports.readLine();
          }
          scannerSports.close();
-
-         System.out.println(" Choose a category: ");
-         System.out.println("1. SPORTS");
-         System.out.println("2. MOVIES");
-         System.out.println("3. GEOGRAPHY");
-         System.out.println("4. Exit");
-
        } catch (IOException e) {
          e.printStackTrace();
        }
 
-     }
-    }
+      System.out.println(" Choose a category: ");
+      System.out.println("1. SPORTS");
+      System.out.println("2. MOVIES");
+      System.out.println("3. GEOGRAPHY");
+      System.out.println("4. Exit");
+
+
+
+  }
+
+
+
+}
