@@ -41,21 +41,23 @@ public abstract class WordList {
       chooseCategory = keyboard.nextLine();
     }
     // If statement for correct input from user
-    if (chooseCategory.equals("1")) {
-      System.out.println(" You have chosen Sports as a category");
-      generateWord(scannerSports, genericWords);
-    } else if (chooseCategory.equals("2")) {
-      System.out.println(" You have chosen Movies as a category");
-      generateWord(scannerMovies, genericWords);
-    } else if (chooseCategory.equals("3")) {
-      System.out.println(" You have chosen Geography as a category");
-      generateWord(scannerGeography, genericWords);
-    } else if (chooseCategory.equals(EXIT)) {
-      System.out.println(" You have exited the game. ");
+    switch (chooseCategory) {
+      case "1":
+        System.out.println(" You have chosen Sports as a category");
+        generateWord(scannerSports, genericWords);
+        break;
+      case "2":
+        System.out.println(" You have chosen Movies as a category");
+        generateWord(scannerMovies, genericWords);
+        break;
+      case "3":
+        System.out.println(" You have chosen Geography as a category");
+        generateWord(scannerGeography, genericWords);
+        break;
+      default:
+        System.out.println(" You have exited the game. ");
 
-
-    } else {
-      throw new IllegalArgumentException(" Invalid number. Please enter again: ");
+        break;
     }
 
     int wrongCount = 0;
@@ -95,3 +97,5 @@ public abstract class WordList {
   }
 
 }
+
+
