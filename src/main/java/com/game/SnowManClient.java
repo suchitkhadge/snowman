@@ -1,5 +1,9 @@
 package com.game;
 
+
+import com.game.controller.Menu;
+import com.game.controller.SnowmanPicture;
+import com.game.controller.WordList;
 import java.io.IOException;
 
 
@@ -9,7 +13,7 @@ public class SnowManClient {
   public SnowManClient() {
   }
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args){
 
     try {
       Menu.printMenu();

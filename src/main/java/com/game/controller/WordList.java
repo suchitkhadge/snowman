@@ -1,4 +1,4 @@
-package com.game;
+package com.game.controller;
 
 
 import java.io.File;
@@ -13,9 +13,9 @@ import java.util.Set;
 public abstract class WordList {
 
 
-  public static final String SPORTS_ROOT_DIRECTORY = "src/main/text-files/sports_words.txt";
-  public static final String MOVIES_ROOT_DIRECTORY = "src/main/text-files/movies_words.txt";
-  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/text-files/geography_words.txt";
+  public static final String SPORTS_ROOT_DIRECTORY = "src/main/resources/text-files/sports_words.txt";
+  public static final String MOVIES_ROOT_DIRECTORY = "src/main/resources/text-files/movies_words.txt";
+  public static final String GEOGRAPHY_ROOT_DIRECTORY = "src/main/resources/text-files/geography_words.txt";
   public static final String EXIT = "4";
   public static String guessWord = " ";
 
@@ -42,23 +42,26 @@ public abstract class WordList {
       chooseCategory = keyboard.nextLine();
     }
     // If statement for correct input from user
-    if (chooseCategory.equals("1")) {
-      System.out.println(" You have chosen Sports as a category");
-      category = scannerSports;
-    }
-    else if (chooseCategory.equals("2")) {
-      System.out.println(" You have chosen Movies as a category");
-      category = scannerMovies;
-    }
-    else if (chooseCategory.equals("3")) {
-      System.out.println(" You have chosen Geography as a category");
-      category = scannerGeography;
-    } else if (chooseCategory.equals(EXIT)) {
-      System.out.println(" You have exited the game. ");
+    switch (chooseCategory) {
+      case "1":
+        System.out.println(" You have chosen Sports as a category");
+        category = scannerSports;
+        break;
+      case "2":
+        System.out.println(" You have chosen Movies as a category");
+        category = scannerMovies;
+        break;
+      case "3":
+        System.out.println(" You have chosen Geography as a category");
+        category = scannerGeography;
+        break;
+      case EXIT:
+        System.out.println(" You have exited the game. ");
 
-    } else {
-      throw new IllegalArgumentException(" Invalid number. Please enter again: ");
-      //System.out.println("out of bounds");
+        break;
+      default:
+        throw new IllegalArgumentException(" Invalid number. Please enter again: ");
+        //System.out.println("out of bounds");
     }
 
     copyWordToList(category, genericWords);

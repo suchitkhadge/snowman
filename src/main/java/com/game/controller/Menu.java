@@ -1,4 +1,4 @@
-package com.game;
+package com.game.controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.io.IOException;
 public abstract class Menu {
 
 
-  public static final String SNOWMAN_MENU = "src/main/text-files/snowman-menu.txt";
+  public static final String SNOWMAN_MENU = "src/main/resources/text-files/snowman-menu.txt";
 
   public Menu() {
   }
