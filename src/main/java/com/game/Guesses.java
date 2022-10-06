@@ -13,12 +13,12 @@ public class Guesses {
     System.out.println("Please enter a letter:");
     String letterGuess = keyboard.nextLine().toLowerCase();
     char letterGuesses = 0;
-    while (usedCharacterSet.contains(letterGuess)){
+    while (usedCharacterSet.contains(letterGuess)) {
       System.out.println("Letter already used. Please enter a letter again: ");
       letterGuess = keyboard.nextLine();
     }
     letterGuesses = letterGuess.charAt(0);
-    if(!Character.isAlphabetic(letterGuesses)) {
+    if (!Character.isAlphabetic(letterGuesses)) {
       System.out.println("Invalid attempt. Guess must be alphabetic");
     }
     usedCharacterSet.add(letterGuess);
