@@ -10,14 +10,19 @@ public abstract class Menu {
 
 
      public static void printMenu() throws IOException {
-       BufferedReader scannerSports = new BufferedReader(new FileReader(
-           "src/main/text-files/snowman-menu.txt"));
-       String line = scannerSports.readLine();
-       while (scannerSports.readLine()!=null) {
-         System.out.println(line);
-         line = scannerSports.readLine();
+
+       try {
+         BufferedReader scannerSports = new BufferedReader(new FileReader(
+             "src/main/text-files/snowman-menu.txt"));
+         String line = scannerSports.readLine();
+         while (scannerSports.readLine()!=null) {
+           System.out.println(line);
+           line = scannerSports.readLine();
+         }
+         scannerSports.close();
+       } catch (IOException e) {
+         e.printStackTrace();
        }
-       scannerSports.close();
 
       System.out.println(" Choose a category: ");
       System.out.println("1. SPORTS");
