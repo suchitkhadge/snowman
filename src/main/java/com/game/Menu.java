@@ -12,7 +12,7 @@ public abstract class Menu {
 
     try {
       BufferedReader scannerSports = new BufferedReader(new FileReader(
-          "src/main/text-files/snowman-menu.txt"));
+          "src/main/resources/text-files/snowman-menu.txt"));
       String line = scannerSports.readLine();
       while (scannerSports.readLine() != null) {
         System.out.println(line);
