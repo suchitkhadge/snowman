@@ -10,6 +10,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Wordlist class validates the user input for category and calls other methods to generate the guess.
+ * The method will scan the word list text file for each category and generate a random word. It
+ * uses a while loop until the player wins or loses the game.
+ */
 public abstract class WordList {
 
 
@@ -68,7 +73,7 @@ public abstract class WordList {
 
     // Generate a random word from the list and display it to the user.
     guessWord = getRandomWord( genericWords);
-    System.out.println(guessWord);
+
 
     // Initialize the counter for wrong guesses.
     int wrongCount = 0;

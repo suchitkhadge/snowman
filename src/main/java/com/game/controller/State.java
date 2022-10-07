@@ -2,6 +2,9 @@ package com.game.controller;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class State {
 
   // Print the state of the word with user's guesses.

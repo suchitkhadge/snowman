@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-/*
+/**
 *  Method to check to see if the user character is in the hidden word or not. It uses the while loop
 * to validate the input and ask user to enter again if the input is not valid.
-* */
+*/
+
 public class Guesses {
 
 
