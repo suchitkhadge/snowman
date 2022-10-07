@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Starts the main menu option and display it to the user to enter input. And, also prints out the
+ * snowman picutre for the game.
+ */
 public abstract class Menu {
 
 

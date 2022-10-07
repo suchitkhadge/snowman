@@ -32,8 +32,8 @@ public abstract class WordList {
     List<String> genericWords = new ArrayList<>();
     List<Character> playerGuessWord = new ArrayList<>();
     Set<String> usedCharacterSet = new HashSet<>();
-
     String chooseCategory = keyboard.nextLine();
+
 
     // Loop until the user exits out
     while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
@@ -61,16 +61,19 @@ public abstract class WordList {
         break;
       default:
         throw new IllegalArgumentException(" Invalid number. Please enter again: ");
-        //System.out.println("out of bounds");
-    }
 
+    }
+    // Scan the file from proper category and copy it to the list.
     copyWordToList(category, genericWords);
-    guessWord = getRandomWord(category, genericWords);
+
+    // Generate a random word from the list and display it to the user.
+    guessWord = getRandomWord( genericWords);
     System.out.println(guessWord);
 
-
+    // Initialize the counter for wrong guesses.
     int wrongCount = 0;
 
+    // while loop to go through the validation of whether the user is winning or losing.
     while (!chooseCategory.equals(EXIT)) {
 
       //printSnowman method
@@ -89,7 +92,7 @@ public abstract class WordList {
 
       System.out.println("**********************************");
       System.out.println("Guesses left: " + (10 - wrongCount));
-      if (!Guesses.getPlayerGuess(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
+      if (!Guesses.isGuessLetterInWord(keyboard, guessWord, playerGuessWord, usedCharacterSet)) {
         wrongCount++;
         System.out.println("Sorry try again!");
         System.out.println("**********************************");
@@ -97,15 +100,15 @@ public abstract class WordList {
     }
   }
 
-  // Generate a random word from the category of text files
+  // Copy word from the text files in to the list.
   private static void copyWordToList(Scanner category, List<String> genericWords) {
     while (category.hasNext()) {
       genericWords.add(category.next());
     }
-    guessWord = genericWords.get(new Random().nextInt(genericWords.size()));
-  }
 
-  private static String getRandomWord(Scanner category, List<String> listWords ){
+  }
+  // Generate a random word from the category of text files
+  private static String getRandomWord(List<String> listWords ){
     guessWord = listWords.get(new Random().nextInt(listWords.size()));
     return guessWord;
   }
