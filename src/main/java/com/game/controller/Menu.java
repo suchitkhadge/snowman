@@ -6,26 +6,24 @@ import java.io.IOException;
 
 /**
  * Starts the main menu option and display it to the user to enter input. And, also prints out the
- * snowman picutre for the game.
+ * snowman picture for the game.
  */
 public abstract class Menu {
 
 
   public static final String SNOWMAN_MENU = "src/main/resources/text-files/snowman-menu.txt";
 
-  public Menu() {
-  }
 
   // Display the first screen when the app is launched
   public static void printMenu() throws IOException {
 
-      printSnowManMenu();
+    printSnowManMenu();
 
-      System.out.println(" Choose a category: ");
-      System.out.println("1. SPORTS");
-      System.out.println("2. MOVIES");
-      System.out.println("3. GEOGRAPHY");
-      System.out.println("4. Exit");
+    System.out.println(" Choose a category: ");
+    System.out.println("1. SPORTS");
+    System.out.println("2. MOVIES");
+    System.out.println("3. GEOGRAPHY");
+    System.out.println("4. Exit");
   }
 
   // Displays the snow man in the first screen
@@ -34,7 +32,7 @@ public abstract class Menu {
       BufferedReader snowManText = new BufferedReader(new FileReader(
           SNOWMAN_MENU));
       String line = snowManText.readLine();
-      while (snowManText.readLine()!=null) {
+      while (snowManText.readLine() != null) {
         System.out.println(line);
         line = snowManText.readLine();
       }
