@@ -13,7 +13,7 @@ public abstract class SnowmanPicture {
    */
   public static void printSnowman(Integer wrongCount) {
     if (wrongCount == 0) {
-      System.out.println("_________________");
+      System.out.println("");
       System.out.println("");
       System.out.println("");
     }

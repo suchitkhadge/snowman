@@ -5,13 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Constructs the game menu along with the snowman picture at the launch of the application.
+ * Starts the main menu option and display it to the user to enter input. And, also prints out the
+ * snowman picutre for the game.
  */
 public abstract class Menu {
 
 
   public static final String SNOWMAN_MENU = "src/main/resources/text-files/snowman-menu.txt";
 
+  public Menu() {
+  }
 
   // Display the first screen when the app is launched
   public static void printMenu() throws IOException {
