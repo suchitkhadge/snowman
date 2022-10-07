@@ -5,14 +5,15 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
-*  Method to check to see if the user character is in the hidden word or not. It uses the while loop
-* to validate the input and ask user to enter again if the input is not valid.
-*/
+ * Method to check to see if the user character is in the hidden word or not. It uses the while loop
+ * to validate the input and ask user to enter again if the input is not valid.
+ */
 
 public class Guesses {
 
 
-  public static boolean isGuessLetterInWord(Scanner keyboard, String word, List<Character> playerGuesses, Set<String> usedCharacterSet) {
+  public static boolean isGuessLetterInWord(Scanner keyboard, String word,
+      List<Character> playerGuesses, Set<String> usedCharacterSet) {
     System.out.println("**********************************");
     System.out.println("Please enter a letter:");
     String letterGuess = keyboard.nextLine().toLowerCase();
@@ -26,7 +27,7 @@ public class Guesses {
     usedCharacterSet.add(letterGuess);
     System.out.println(usedCharacterSet);
     playerGuesses.add(letterGuess.charAt(0));
-      return word.contains(letterGuess);
+    return word.contains(letterGuess);
   }
 
 }

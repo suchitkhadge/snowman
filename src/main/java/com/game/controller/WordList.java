@@ -11,9 +11,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * Wordlist class validates the user input for category and calls other methods to generate the guess.
- * The method will scan the word list text file for each category and generate a random word. It
- * uses a while loop until the player wins or loses the game.
+ * Wordlist class validates the user input for category and calls other methods to generate the
+ * guess. The method will scan the word list text file for each category and generate a random word.
+ * It uses a while loop until the player wins or loses the game.
  */
 public abstract class WordList {
 
@@ -39,10 +39,9 @@ public abstract class WordList {
     Set<String> usedCharacterSet = new HashSet<>();
     String chooseCategory = keyboard.nextLine();
 
-
     // Loop until the user exits out
-    while (!chooseCategory.equals("1") && !chooseCategory.equals("2")&& !chooseCategory.equals("3")&& !chooseCategory.equals("4"))
-    {
+    while (!chooseCategory.equals("1") && !chooseCategory.equals("2") && !chooseCategory.equals("3")
+        && !chooseCategory.equals("4")) {
       System.out.println("Please choose a valid category (1- 4). ");
       chooseCategory = keyboard.nextLine();
     }
@@ -72,8 +71,7 @@ public abstract class WordList {
     copyWordToList(category, genericWords);
 
     // Generate a random word from the list and display it to the user.
-    guessWord = getRandomWord( genericWords);
-
+    guessWord = getRandomWord(genericWords);
 
     // Initialize the counter for wrong guesses.
     int wrongCount = 0;
@@ -112,8 +110,9 @@ public abstract class WordList {
     }
 
   }
+
   // Generate a random word from the category of text files
-  private static String getRandomWord(List<String> listWords ){
+  private static String getRandomWord(List<String> listWords) {
     guessWord = listWords.get(new Random().nextInt(listWords.size()));
     return guessWord;
   }
