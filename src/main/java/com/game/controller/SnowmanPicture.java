@@ -1,7 +1,16 @@
 package com.game.controller;
 
+/**
+ * Implements the method used to print out segments of the snowman if a conditional statement
+ * is found to be true.
+ */
 public abstract class SnowmanPicture {
 
+  /**
+   * This method is used to print out segments of the snowman if a conditional statement
+   * is found to be true.
+   * @param wrongCount used to hold the number of wrong number of guesses.
+   */
   public static void printSnowman(Integer wrongCount) {
     if (wrongCount == 0) {
       System.out.println("_________________");

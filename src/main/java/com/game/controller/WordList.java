@@ -61,7 +61,7 @@ public abstract class WordList {
         break;
       default:
         throw new IllegalArgumentException(" Invalid number. Please enter again: ");
-        //System.out.println("out of bounds");
+
     }
 
     copyWordToList(category, genericWords);

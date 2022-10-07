@@ -6,7 +6,9 @@ import com.game.controller.SnowmanPicture;
 import com.game.controller.WordList;
 import java.io.IOException;
 
-
+/**
+ * Entry point for initialization of the application
+ */
 public class SnowManClient {
 
 

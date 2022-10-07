@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Constructs the game menu along with the snowman picture at the launch of the application.
+ */
 public abstract class Menu {
 
 
   public static final String SNOWMAN_MENU = "src/main/resources/text-files/snowman-menu.txt";
 
-  public Menu() {
-  }
 
   // Display the first screen when the app is launched
   public static void printMenu() throws IOException {
